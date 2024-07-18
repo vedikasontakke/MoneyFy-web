@@ -1,0 +1,22 @@
+html {
+    background-color: #FAFBFB;
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+.App {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #FAFBFB;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+::-webkit-scrollbar {
+    display: none;
+    }
