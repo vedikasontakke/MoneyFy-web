@@ -62,7 +62,7 @@ const Input = ({ sector, onClose }) => {
                     <input className={`${errors.name?.message ? 'invalid' : ''} input-name`} type="text" name='name' placeholder= {`Name of ${sector}*`} {...register('name')}/>
                 </div>
                 <div className='col-lg-3 amount'>
-                    <input className={`${errors.amount?.message ? 'invalid' : ''} input-amount`} type="number" name="amount" placeholder='Amount*' {...register('amount')} step="0.01"/> <span>₹</span>
+                    <input className={`${errors.amount?.message ? 'invalid' : ''} input-amount`} type="number" name="amount" placeholder='Amount*' {...register('amount')} step="0.01"/> <span>€</span>
                 </div>
             </div>
                 <div className='row input-group'>
@@ -81,36 +81,32 @@ const Input = ({ sector, onClose }) => {
                         <option disabled> Select Category </option>
                         <option value="uncategorized">Uncategorized*</option>
                         <option value="entertainment">Entertainment</option>
-                        <option value="house">Housing Rent</option>
+                        <option value="house">House</option>
+                        <option value="insurance">insurance</option>
                         <option value="shopping">Shopping</option>
                         <option value="food">Food</option>
                         <option value="transportation">Transportation</option>
-                        <option value="college">College Fees</option>
-                        <option value="tuition">Tuition Fees</option>
-                        <option value="personal">Personal</option>  
-                        <option value="health">Health</option>          
-                        <option value="academic">Academic Expenses</option>
-                        <option value="stationery">Stationery Expenses</option>
+                        <option value="personal">Personal</option>
                     </select>
                 }
                 {sector === 'income' &&
                     <select className={`${errors.category?.message ? 'invalid' : ''} select-category`} name="category" {...register('category')}>
-                      <option disabled> Select Category </option>
-                        <option value="uncategorized">Uncategorized*</option>
-                        <option value="savings">Savings</option>
-                        <option value="scholarships sale">Scholarships</option>
-                        <option value="pockeymoney">Pocket Money</option>
-                        <option value="selfincome">Self Income</option>
+                        <option disabled> Select Category </option>
+                        <option value="uncategorized">Uncategorized</option>
+                        <option value="salary">Salary</option>
+                        <option value="personal sale">Personal sale</option>
+                        <option value="personal work">Personal work</option>
+                        <option value="investment benefits">Investment benefits</option>
                     </select>
                 }
                 {sector === 'editIncome' &&
                     <select className={`${errors.category?.message ? 'invalid' : ''} select-category`} name="category" {...register('category')}>
                         <option disabled> Select Category </option>
-                        <option value="uncategorized">Uncategorized*</option>
-                        <option value="savings">Savings</option>
-                        <option value="scholarships sale">Scholarships</option>
-                        <option value="pockeymoney">Pocket Money</option>
-                        <option value="selfincome">Self Income</option>
+                        <option value="uncategorized">Uncategorized</option>
+                        <option value="salary">Salary</option>
+                        <option value="personal sale">Personal sale</option>
+                        <option value="personal work">Personal work</option>
+                        <option value="investment benefits">Investment benefits</option>
                     </select>
                 }
                 {errors.category && <small style={{color: "red"}}>{errors.category?.message}</small>}

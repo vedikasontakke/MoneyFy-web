@@ -12,7 +12,6 @@ import {
 import { RiRobot2Line } from "react-icons/ri";
 import { GiJoystick, GiChessQueen, GiPokerHand } from 'react-icons/gi'; // Game Icons
 
-
 import './Sidebar.scss';
 import { logout } from '../../store/AccessTokenStore';
 
@@ -46,47 +45,61 @@ const sidebarNavItems = [
         sectionNumber: 0
     },
     {
-        display: 'ChatBot',
+        display: 'Finance Advisor AI',
         icon: <RiRobot2Line />,
         to: '/commons',
         section: 'commons',
-        sectionNumber: 0
+        sectionNumber: 1
     },
     {
         display: 'Scholarship',
         icon: <RiRobot2Line />,
-        to: '/scholarship', // Updated to match the route in App.js
-        section: 'commons',
+        to: '/scholarship',
+        section: 'scholarship',
+        sectionNumber: 2
+    },
+    {
+        display: 'Investments',
+        icon: <FiThumbsUp />,
+        to: '/investments',
+        section: 'investments',
         sectionNumber: 0
-      },
+    },
     {
-        display: 'Budget Guessing Game',
-        title: 'Finance Explorer Games',
+        display: 'Budget Guessing',
+        title: 'FINANCE EXPLORER GAMES',
         icon: <GiChessQueen />,
-        url: 'https://669819979756522682df09bf--velvety-chaja-eb0382.netlify.app/',
-        sectionNumber: 1
+        url: 'https://6698b18bd6b9114e37a99c17--adorable-chimera-4a4a1a.netlify.app/',
+        sectionNumber: 3
     },
     {
-        display: 'Credit Decision Game',
+        display: 'Credit Decision',
         icon: <GiPokerHand />,
-        url: 'https://66982002f1f07d2d3371e4b1--snazzy-chebakia-793ee3.netlify.app/',
+        url: 'https://6698b353229abc5078b8b5a2--monumental-sunflower-f75b4d.netlify.app/',
         section: 'profile',
-        sectionNumber: 1
+        sectionNumber: 3
     },
     {
-        display: 'Loan Interview Game',
+        display: 'Loan Interview',
         icon: <GiJoystick />,
-        url: 'https://6698238627625f2f08080a2c--delightful-dusk-80b1e0.netlify.app/',
+        url: 'https://6698b47c2b97e7509331ca90--wondrous-salamander-c3ec3b.netlify.app/3333333',
         section: 'profile',
-        sectionNumber: 1
+        sectionNumber: 3
     }, 
     {
         display: 'Profile',
-        title: 'MY ACOUNT',
+        title: 'MY ACCOUNT',
         icon: <FiUser />,
         to: '/profile',
         section: 'profile',
-        sectionNumber: 2
+        sectionNumber: 4
+    },
+    {
+        display: 'Logout',
+        icon: <FiLogOut />,
+        to: '/login',
+        section: 'profile',
+        sectionNumber: 4
     },
 ];
 
@@ -97,34 +110,36 @@ const Sidebar = () => {
     const indicatorRef = useRef();
     const location = useLocation();
 
-    const offsiteIndicator = 23;
-    const sidebarIndicatorHeight = activeIndex * stepHeight + (sidebarNavItems[activeIndex].sectionNumber * offsiteIndicator);
+    useEffect(() => {
+        const curPath = location.pathname.split('/')[1];
+        const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
+        setActiveIndex(curPath.length === 0 ? 0 : activeItem);
+    }, [location]);
 
     useEffect(() => {
         setTimeout(() => {
             const sidebarItem = sidebarRef.current?.querySelector('.sidebar__menu__item');
-            indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
-            setStepHeight(sidebarItem.clientHeight);
+            if (sidebarItem) {
+                indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
+                setStepHeight(sidebarItem.clientHeight);
+            }
         }, 50);
     }, []);
 
-    // change active index
-    useEffect(() => {
-        const curPath = window.location.pathname.split('/')[1];
-        const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
-        setActiveIndex(curPath.length === 0 ? 0 : activeItem);
-    }, [location]);
+    const sidebarIndicatorHeight = activeIndex * stepHeight;
 
     return (
         <div className='sidebar'>
             <div className="sidebar__logo">
                 <div className='sidebar__fullLogo'>
                     <FiBarChart style={{ marginRight: '1rem' }} />
-                    <Link to={'/'}>MoneyFy</Link>
+                    <Link to={'/'}>EduFinance Hub</Link>
                 </div>
             </div>
 
+            <b><hr/></b>
             <h3 className='sidebar__title'>MAIN</h3>
+            <b><hr/></b>
 
             <div ref={sidebarRef} className="sidebar__menu">
                 <div
@@ -137,41 +152,34 @@ const Sidebar = () => {
                     }}
                 />
 
-                {sidebarNavItems.map((item, index) => {
-                    if (item.url) {
-                        return (
-                            <a href={item.url} target="_blank" rel="noopener noreferrer" key={index}>
-                                {item.title ? (<h3 className='sidebar__title'>{item.title}</h3>) : ''}
-                                <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
-                                    <div className="sidebar__menu__item__icon">
-                                        {item.icon}
-                                    </div>
-                                    <div className="sidebar__menu__item__text">
-                                        {item.display}
-                                    </div>
+                {sidebarNavItems.map((item, index) => (
+                    item.url ? (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" key={index}>
+                            {item.title && <h3 className='sidebar__title'><b><hr/></b>{item.title}<b><hr/></b></h3>}
+                            <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
+                                <div className="sidebar__menu__item__icon">
+                                    {item.icon}
                                 </div>
-                            </a>
-                        );
-                    } else {
-                        return (
-                            <Link to={item.to} key={index}>
-                                {item.title ? (<h3 className='sidebar__title'>{item.title}</h3>) : ''}
-                                <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
-                                    <div className="sidebar__menu__item__icon">
-                                        {item.icon}
-                                    </div>
-                                    <div className="sidebar__menu__item__text">
-                                        {item.display}
-                                    </div>
+                                <div className="sidebar__menu__item__text">
+                                    {item.display}
                                 </div>
-                            </Link>
-                        );
-                    }
-                })}
+                            </div>
+                        </a>
+                    ) : (
+                        <Link to={item.to} key={index}>
+                            {item.title && <h3 className='sidebar__title'><b><hr/></b>{item.title}<b><hr/></b></h3>}
+                            <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
+                                <div className="sidebar__menu__item__icon">
+                                    {item.icon}
+                                </div>
+                                <div className="sidebar__menu__item__text">
+                                    {item.display}
+                                </div>
+                            </div>
+                        </Link>
+                    )
+                ))}
 
-            </div>
-            <div className='logout'>
-                <button className='button-out' onClick={() => logout()}> <FiLogOut className='icon-out' />Logout</button>
             </div>
         </div>
     );

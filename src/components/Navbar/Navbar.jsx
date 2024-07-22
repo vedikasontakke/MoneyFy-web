@@ -37,7 +37,7 @@ const Navbar = () => {
                
                 <NavLink className={'logo'} to='/home'>
                {/*  <FiBarChart style={{ marginRight: '1rem'}}/> */}
-                MoneyFy
+                EduFinance Hub
                 </NavLink>
                 <div className='flexy'>
                     {user && <button className='add-btn' onClick={() => setOpenDropdown(!openDropdown)}> <FiPlus/></button>}
@@ -47,7 +47,7 @@ const Navbar = () => {
                            {/*  <div className='frame-img'>
                             <img src={user.avatar} alt="user avatar" />
                             </div> */}
-                            <p>Hi, {user.name}</p> 
+                            <p className='text-4xl'>Hi, {user.name}</p> 
                         </NavLink>
                     )
                     :

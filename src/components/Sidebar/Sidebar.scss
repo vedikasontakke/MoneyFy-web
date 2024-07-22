@@ -91,3 +91,9 @@ a:link, a:visited, a:active {
 .icon-out{
     margin-right: 1rem;
 }
+
+hr {
+    border: 1px solid gray-500; /* Example border style */
+    border-width: 2px 0; /* Adjust thickness as needed */
+    margin: 10px 0; /* Example margin */
+  }

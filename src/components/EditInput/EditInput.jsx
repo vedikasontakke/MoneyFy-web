@@ -82,14 +82,14 @@ const EditInput = ({ sector, target, onClose }) => {
                     </div>
                 </div>
 
-            <div className='col-lg-12 category'>
+                <div className='col-lg-12 category'>
                 {sector === 'editExpense' &&
                     <select className={`${errors.category?.message ? 'invalid' : ''} select-category`} name="category" {...register('category')}>
                         <option disabled> Select Category </option>
                         <option value="uncategorized">Uncategorized*</option>
                         <option value="entertainment">Entertainment</option>
                         <option value="house">House</option>
-                        <option value="insurance">Insurance</option>
+                        <option value="insurance">insurance</option>
                         <option value="shopping">Shopping</option>
                         <option value="food">Food</option>
                         <option value="transportation">Transportation</option>
@@ -113,7 +113,7 @@ const EditInput = ({ sector, target, onClose }) => {
                 <div className='frecuency-radio'>
                     <label><input type="radio" {...register('frequency')} value="monthly" /> Monthly </label>
                     <label><input type="radio" {...register('frequency')} value="weekly" /> Weekly </label>
-                    <label><input type="radio" {...register('frequency')} value="diary" /> Diary </label>
+                    <label><input type="radio" {...register('frequency')} value="diary" /> Daily </label>
                 </div>
             </div>
         {error && <><small className='invalid-2' >Error sending {sector} </small> <br/></>}

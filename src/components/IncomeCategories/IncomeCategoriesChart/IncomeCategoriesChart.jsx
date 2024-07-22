@@ -22,7 +22,7 @@ class IncomeCategoriesChart extends React.Component {
               },
           type: 'donut',
         },
-        labels: [ 'Uncategorized', 'Savings', 'Scholarships', 'Pocket Money', 'Self Income' ],
+        labels: [ 'Uncategorized', 'Persona sale', 'Investment benefits', 'Salary', 'Personal work' ],
         legend: {
           show: true,
           position: 'left',

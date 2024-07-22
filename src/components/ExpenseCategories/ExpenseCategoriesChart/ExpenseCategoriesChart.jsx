@@ -8,7 +8,7 @@ class ExpenseCategoriesChart extends React.Component {
       this.state = {
         series: [],
         options: {
-          colors: ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0', '#00B1F2', '#F9A3A4', '#C7F464', '#F86624', '#845EC2', '#FF6F91', '#FFC75F', '#3D405B'],
+          colors: ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0', '#00B1F2', '#F9A3A4', '#C7F464', '#F86624'],
           plotOptions: {
             pie: {
               donut: {
@@ -23,7 +23,7 @@ class ExpenseCategoriesChart extends React.Component {
                 },
             type: 'donut',
           },
-          labels: [ 'Uncategorized', 'Entertainment', 'Housing Rent', 'Shopping', 'Food', 'Transportation', 'College Fees', 'Tuition Fees', 'Personal', 'Health', 'Academic Expenses', 'Stationery Expenses' ],
+          labels: [ 'Shopping', 'Food', 'Entertainment', 'House', 'Insurance', 'Transportation', 'Personal', 'Uncategorized' ],
           legend: {
             show: true,
             position: 'left',
@@ -39,7 +39,7 @@ class ExpenseCategoriesChart extends React.Component {
             enabled: true,
             y: {
               formatter: function(val){
-                return val + "₹"
+                return val + "€"
               },
               title:{
                 formatter: function(seriesName){
@@ -183,11 +183,11 @@ class ExpenseCategoriesChart extends React.Component {
    
     render() {
       return (
-        <div id="chart" style={{position: 'absolute', left: '260px', top: '80px'}}>
+        <div id="chart" style={{position: 'absolute', left: '260px', top: '125px'}}>
             <ReactApexChart 
             options={this.state.options} 
             series={this.getCategories()} 
-            type="donut" height='380' width="800"/>
+            type="donut" height='320' width="800"/>
         </div>
       );
     }
